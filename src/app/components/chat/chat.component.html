@@ -6,17 +6,18 @@
   </div>
 
   <!-- Contenedor de los mensajes -->
-  <div class="chat-messages">
-    <div *ngFor="let data of messages"[ngClass]="{'message-receive': data.type === 'received', 'message-send': data.type === 'sent'}">
-      {{ data.text }}
+  <div class="chat-messages" style="height: 400px; overflow-y: auto;">
+    <div *ngFor="let data of messages" [ngClass]="{'message-receive': data.type === 'received', 'message-send': data.type === 'sent'}">
+      <strong>{{ data.author }}</strong><br>
+      <span>{{ data.text }}</span><br>
+      <span class="timestamp">{{ data.date | date:'short' }}</span>
     </div>
   </div>
 
   <!-- Barra de entrada de texto -->
   <div class="chat-input">
-    <input [(ngModel)]="message" (keydown.enter)="sendMessage()" placeholder="Type your message..." />
-    <button (click)="sendMessage()">Send</button>
+    <input [(ngModel)]="message" (keydown.enter)="sendMessage()" placeholder="Escribe tu mensaje..." />
+    <button (click)="sendMessage()">Enviar</button>
   </div>
 
 </div>
-
